@@ -1,3 +1,13 @@
 .one-half.column {
     margin-top: 5%;
 }
+.tickerWrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+.ticker {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    max-width: 190px;
+}
