@@ -14,10 +14,10 @@ xhr.onreadystatechange = function () {
 xhr.send();
 
 function formatData (data) {
-    var contentArea = $('.tickerWrapper');
+    var contentArea = $('#tickerWrapper');
     contentArea.innerHTML = '';
     // console.log(JSON.parse(data[0]).id);
-    parseData = JSON.parse(data.responseText)
+    var parseData = JSON.parse(data.responseText)
     console.log(parseData)
     parseData.forEach((value, index) => {
         if (index < 50) {
@@ -35,3 +35,31 @@ function formatMktCap (val) {
     }
     else return val;
 }
+
+function searchCrypto () {
+    var sQuery = $('#searchBar').val();
+    var url = `https://api.coingecko.com/api/v3/coins/${sQuery}`;
+    try {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.setRequestHeader("accept", "application/json");
+
+        xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            console.log(xhr.status);
+            console.log(xhr.responseText);
+            var dataArray = [];
+            dataArray.push(xhr.responseText);
+            var parseData = JSON.parse(dataArray)
+            console.log(`${sQuery} current price: $${parseData.market_data.current_price.usd} `)
+            $('#searchContent').html(`${sQuery} Current price: $${parseData.market_data.current_price.usd.toLocaleString('en-US')} 24hr high: $${parseData.market_data.high_24h.usd.toLocaleString('en-US')}  24hr low: $${parseData.market_data.low_24h.usd.toLocaleString('en-US')} `);
+        }};
+        xhr.send();
+    }
+    catch (err) {
+        $('#searchContent').html(`Please enter the name of the Currency`);
+        console.log(err);
+    }
+}
+
+$('#tickerWrapper').attr('max-height', $('.ticker').offsetHeight);
