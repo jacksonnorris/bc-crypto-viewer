@@ -22,10 +22,17 @@ function formatData (data) {
     parseData.forEach((value, index) => {
         if (index < 50) {
             var mktCap = formatMktCap(value.market_cap);
-            contentArea.append(`<div class='ticker'>${value.name}: $${value.current_price.toLocaleString('en-US')}<br>Market Cap: $${mktCap}<br>24hr change: ${value.price_change_percentage_24h.toFixed(2)}%</div>`)
+            contentArea.append(`<div class='ticker'>${value.name}: $${value.current_price.toLocaleString('en-US')}<br>Market Cap: $${mktCap}<br>24hr change: <span class='percentage'>${value.price_change_percentage_24h.toFixed(2)}%</span></div>`)
         }
+    })
+    var percentages = document.getElementsByClassName('percentage');
+    for (let i = 0; i < percentages.length; i++) {
+        let tmp = percentages[i].innerHTML.charAt(0);
+        if (tmp == '-') { percentages[i].classList.add('red') }
+        else if (tmp == '') {}
+        else { percentages[i].classList.add('green')}
     }
-)}
+}
 function formatMktCap (val) {
     if (val > 1000000000) {
         return (val/1000000000).toFixed(2) + "B";
@@ -64,3 +71,4 @@ function searchCrypto () {
 }
 
 $('#tickerWrapper').attr('max-height', $('.ticker').offsetHeight);
+
