@@ -22,7 +22,7 @@ function formatData (data) {
     parseData.forEach((value, index) => {
         if (index < 50) {
             var mktCap = formatMktCap(value.market_cap);
-            contentArea.append(`<div class='ticker'>${value.name}: $${value.current_price.toLocaleString('en-US')} Market Cap: $${mktCap} 24hr change: ${value.price_change_percentage_24h.toFixed(2)}%</div>`)
+            contentArea.append(`<div class='ticker'>${value.name}: $${value.current_price.toLocaleString('en-US')}<br>Market Cap: $${mktCap}<br>24hr change: ${value.price_change_percentage_24h.toFixed(2)}%</div>`)
         }
     }
 )}
@@ -37,22 +37,23 @@ function formatMktCap (val) {
 }
 
 function searchCrypto () {
-    var sQuery = $('#searchBar').val();
+    var sQuery = $('#searchBar').val().toLowerCase();
     var url = `https://api.coingecko.com/api/v3/coins/${sQuery}`;
     try {
         var xhr = new XMLHttpRequest();
         xhr.open("GET", url);
         xhr.setRequestHeader("accept", "application/json");
-
         xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
-            console.log(xhr.status);
-            console.log(xhr.responseText);
+            // console.log(xhr.status);
+            // console.log(xhr.responseText);
             var dataArray = [];
             dataArray.push(xhr.responseText);
             var parseData = JSON.parse(dataArray)
-            console.log(`${sQuery} current price: $${parseData.market_data.current_price.usd} `)
-            $('#searchContent').html(`${sQuery} Current price: $${parseData.market_data.current_price.usd.toLocaleString('en-US')} 24hr high: $${parseData.market_data.high_24h.usd.toLocaleString('en-US')}  24hr low: $${parseData.market_data.low_24h.usd.toLocaleString('en-US')} `);
+            coinName = sQuery.charAt(0).toUpperCase() + sQuery.slice(1);
+            // console.log(`${sQuery} current price: $${parseData.market_data.current_price.usd} `)
+            $('#searchContent').removeClass('hidden');
+            $('#searchContent').html(`<h3>${coinName}</h3><h5>Current price: $${parseData.market_data.current_price.usd.toLocaleString('en-US')}</h5><h5>24hr high: $${parseData.market_data.high_24h.usd.toLocaleString('en-US')}</h5><h5>24hr low: $${parseData.market_data.low_24h.usd.toLocaleString('en-US')}</h5>`);
         }};
         xhr.send();
     }

@@ -1,11 +1,28 @@
-.one-half.column {
+.column {
     margin-top: 5%;
+}
+.hidden {
+    display: none;
+}
+.searchContent {
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 100%;
+    padding: 5px;
+    margin: 0;
+}
+.searchContent h5 {
+    line-height: 1;
+}
+.searchBar input, button {
+    margin-top: 1% !important;
 }
 .tickerWrapper {
     display: flex;
     flex-wrap: wrap;
     max-height: 90px;
     overflow: hidden;
+    margin-top: 1%;
 }
 .ticker {
     border: 1px solid black;
