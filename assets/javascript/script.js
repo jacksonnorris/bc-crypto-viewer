@@ -61,6 +61,7 @@ function searchCrypto () {
             // console.log(`${sQuery} current price: $${parseData.market_data.current_price.usd} `)
             $('#searchContent').removeClass('hidden');
             $('#searchContent').html(`<h4>${coinName}</h4><h5>Current price: $${parseData.market_data.current_price.usd.toLocaleString('en-US')}</h5><h5>24hr high: $${parseData.market_data.high_24h.usd.toLocaleString('en-US')}</h5><h5>24hr low: $${parseData.market_data.low_24h.usd.toLocaleString('en-US')}</h5>`);
+            localStorage.setItem('coin', coinName);
         }};
         xhr.send();
     }
@@ -112,4 +113,15 @@ function toggleContent() {
     }
 }
 
+function getLocalData () {
+    var selectedCoin = JSON.stringify(localStorage.getItem('coin'));
+    if (selectedCoin === 'null') {
+    }
+    else {
+        $('#searchBar').val(selectedCoin.replace(/\"/g, ""));
+        searchCrypto();
+    }
+}
+
+getLocalData();
 fetchRedditPosts();
