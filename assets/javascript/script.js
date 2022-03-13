@@ -53,20 +53,23 @@ function searchCrypto () {
         xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             // console.log(xhr.status);
-            // console.log(xhr.responseText);
+            console.log(xhr.responseText);
             var dataArray = [];
             dataArray.push(xhr.responseText);
             var parseData = JSON.parse(dataArray)
+            if (parseData.error == "Could not find coin with the given id") {
+                console.log('error found')
+                document.getElementById('searchContent').innerHTML = 'Could not find currency, please enter the name and not the ticker in your search'
+            }
             coinName = sQuery.charAt(0).toUpperCase() + sQuery.slice(1);
             // console.log(`${sQuery} current price: $${parseData.market_data.current_price.usd} `)
             $('#searchContent').removeClass('hidden');
-            $('#searchContent').html(`<h4>${coinName}</h4><h5>Current price: $${parseData.market_data.current_price.usd.toLocaleString('en-US')}</h5><h5>24hr high: $${parseData.market_data.high_24h.usd.toLocaleString('en-US')}</h5><h5>24hr low: $${parseData.market_data.low_24h.usd.toLocaleString('en-US')}</h5>`);
+            $('#searchContent').html(`<h4>${coinName}</h4><h5>Current price: $${parseData.market_data.current_price.usd.toLocaleString('en-US')}</h5><h5>24hr change: ${parseData.market_data.price_change_percentage_24h.toLocaleString('en-US')}%</h5><h5>7D change: ${parseData.market_data.price_change_percentage_7d.toLocaleString('en-US')}%</h5>`);
             localStorage.setItem('coin', coinName);
         }};
         xhr.send();
     }
     catch (err) {
-        $('#searchContent').html(`Please enter the name of the Currency`);
         console.log(err);
     }
 }
