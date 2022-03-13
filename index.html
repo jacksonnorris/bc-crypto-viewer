@@ -1,52 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-
-  <!-- Basic Page Needs
+  <head>
+    <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>Crypto Report</title>
-  <meta name="description" content="Crypto report allows you to find all the important info you need to see what's going on in the crypto market">
-  <meta name="author" content="Jackson Norris">
+    <meta charset="utf-8" />
+    <title>Crypto Report</title>
+    <meta
+      name="description"
+      content="Crypto report allows you to find all the important info you need to see what's going on in the crypto market"
+    />
+    <meta name="author" content="Jackson Norris" />
 
-  <!-- Mobile Specific Metas
+    <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- FONT
+    <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link
+      href="//fonts.googleapis.com/css?family=Raleway:400,300,600"
+      rel="stylesheet"
+      type="text/css"
+    />
 
-  <!-- CSS
+    <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="/assets/css/normalize.css">
-  <link rel="stylesheet" href="/assets/css/skeleton.css">
-  <link rel="stylesheet" href="/assets/css/style.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/assets/css/normalize.css" />
+    <link rel="stylesheet" href="/assets/css/skeleton.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
 
-  <!-- Favicon
+    <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
-
-</head>
-<body>
-
-  <!-- Primary Page Layout
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  </head>
+  <body>
+    <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container">
-    <div class="row">
-      <div class="column">
-        <h4>Crypto Report</h4>
-        <div class="searchBar"><input class ="two-thirds column" type="text" id="searchBar" placeholder="Enter the name of a cryptocurrency for more details"><button class="one-third column" id="searchButton" onclick="searchCrypto()">Search</button></div>
-      </div>
-      <div class="column searchContent hidden" id="searchContent"></div>
-      <div class="column tickerWrapper" id="tickerWrapper">
+    <div class="container">
+      <div class="row">
+        <div class="column">
+          <h4>Crypto Report</h4>
+          <div class="searchBar">
+            <input
+              class="two-thirds column"
+              type="text"
+              id="searchBar"
+              placeholder="Enter the name of a cryptocurrency for more details"
+            /><button
+              class="one-third column"
+              id="searchButton"
+              onclick="searchCrypto()"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+        <div class="column searchContent hidden" id="searchContent"></div>
+        <div class="column tickerWrapper" id="tickerWrapper"></div>
+        <div class="column redditWrapper" id="redditWrapepr">
+          <div>
+            <select id="postType" onchange="fetchRedditPosts()">
+              <option value="hot">Hot</option>
+              <option value="top">Top</option>
+              <option value="new">New</option>
+            </select>
+          </div>
+          <div class="redditContent" id="redditContent"></div>
+        </div>
       </div>
     </div>
-  </div>
 
-<!-- End Document
+    <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-</body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type='text/javascript' src='/assets/javascript/script.js'></script>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/assets/javascript/script.js"></script>
 </html>

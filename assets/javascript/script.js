@@ -70,5 +70,33 @@ function searchCrypto () {
     }
 }
 
+function renderPosts(posts) {
+    let redditContent = $('#redditContent');
+    // console.log(redditContent.innerHTML)
+    redditContent.html('');
+    // console.log(redditContent.innerHTML)
+    for (var j = 0; j < posts.length; j++) {
+        redditContent.append(`<div><li><a href='${posts[j].data.url}'>${posts[j].data.title}</a><span class='upvotes'><i class="fa-solid fa-arrow-up"></i> ${posts[j].data.ups}</span><span class='comments'><i class="fa-solid fa-comment"></i> ${posts[j].data.num_comments}</span></li></div>`)
+    }
+}
+
 $('#tickerWrapper').attr('max-height', $('.ticker').offsetHeight);
 
+let postType = 'hot';
+
+function fetchRedditPosts() {
+    postType = $('#postType').val();
+    fetch(`https://www.reddit.com/r/cryptocurrency/${postType}.json`)
+    .then(function(result) {
+        return result.json();  
+    })
+    .then(function(result) {
+        console.log(result);   
+        renderPosts(result.data.children);
+    })
+    .catch(function(err) {
+        console.log(err); 
+    });
+}
+
+fetchRedditPosts();

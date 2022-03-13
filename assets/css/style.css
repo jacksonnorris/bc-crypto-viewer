@@ -1,39 +1,45 @@
 .column {
-    margin-top: 5%;
+  margin-top: 5%;
 }
 .hidden {
-    display: none;
+  display: none;
 }
 .searchContent {
-    border: 1px solid black;
-    border-radius: 10px;
-    width: 100%;
-    padding: 5px;
-    margin: 0;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 100%;
+  padding: 5px;
+  margin: 0;
 }
 .searchContent h5 {
-    line-height: 1;
+  line-height: 1;
 }
-.searchBar input, button {
-    margin-top: 1% !important;
+.searchBar input,
+button {
+  margin-top: 1% !important;
 }
 .tickerWrapper {
-    display: flex;
-    flex-wrap: wrap;
-    max-height: 90px;
-    overflow: hidden;
-    margin-top: 1%;
+  display: flex;
+  flex-wrap: wrap;
+  max-height: 90px;
+  overflow: hidden;
+  margin-top: 1%;
 }
 .ticker {
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 5px;
-    max-width: 190px;
-    margin: 5px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  max-width: 190px;
+  margin: 5px;
 }
 .red {
-    color: red;
+  color: red;
 }
 .green {
-    color: green;
+  color: green;
+}
+.upvotes,
+.comments {
+  padding: 0 5px;
+  margin-left: 5px;
 }
