@@ -60,7 +60,7 @@ function searchCrypto () {
             coinName = sQuery.charAt(0).toUpperCase() + sQuery.slice(1);
             // console.log(`${sQuery} current price: $${parseData.market_data.current_price.usd} `)
             $('#searchContent').removeClass('hidden');
-            $('#searchContent').html(`<h3>${coinName}</h3><h5>Current price: $${parseData.market_data.current_price.usd.toLocaleString('en-US')}</h5><h5>24hr high: $${parseData.market_data.high_24h.usd.toLocaleString('en-US')}</h5><h5>24hr low: $${parseData.market_data.low_24h.usd.toLocaleString('en-US')}</h5>`);
+            $('#searchContent').html(`<h4>${coinName}</h4><h5>Current price: $${parseData.market_data.current_price.usd.toLocaleString('en-US')}</h5><h5>24hr high: $${parseData.market_data.high_24h.usd.toLocaleString('en-US')}</h5><h5>24hr low: $${parseData.market_data.low_24h.usd.toLocaleString('en-US')}</h5>`);
         }};
         xhr.send();
     }
@@ -76,7 +76,7 @@ function renderPosts(posts) {
     redditContent.html('');
     // console.log(redditContent.innerHTML)
     for (var j = 0; j < posts.length; j++) {
-        redditContent.append(`<div><li><a href='${posts[j].data.url}'>${posts[j].data.title}</a><span class='upvotes'><i class="fa-solid fa-arrow-up"></i> ${posts[j].data.ups}</span><span class='comments'><i class="fa-solid fa-comment"></i> ${posts[j].data.num_comments}</span></li></div>`)
+        redditContent.append(`<div><li><a target='_blank' href='${posts[j].data.url}'>${posts[j].data.title}</a><span class='upvotes'><i class="fa-solid fa-arrow-up"></i> ${posts[j].data.ups}</span><span class='comments'><i class="fa-solid fa-comment"></i> ${posts[j].data.num_comments}</span></li></div>`)
     }
 }
 
@@ -97,6 +97,19 @@ function fetchRedditPosts() {
     .catch(function(err) {
         console.log(err); 
     });
+}
+
+function toggleContent() {
+    var content = document.getElementById('tickerWrapper');
+    var toggle = document.getElementById('toggleTickers');
+    if (content.classList.contains('expanded')) {
+        content.classList.remove('expanded');
+        toggle.innerHTML = "Show More <i class='fa-solid fa-circle-arrow-down'</i>";
+    }
+    else {
+        content.classList.add('expanded');
+        toggle.innerHTML = "Show Less <i class='fa-solid fa-circle-arrow-up'</i>";
+    }
 }
 
 fetchRedditPosts();

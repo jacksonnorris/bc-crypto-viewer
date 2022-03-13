@@ -25,12 +25,18 @@ button {
   overflow: hidden;
   margin-top: 1%;
 }
+.expanded {
+  max-height: none;
+}
 .ticker {
   border: 1px solid black;
   border-radius: 10px;
   padding: 5px;
   max-width: 190px;
   margin: 5px;
+}
+.toggleTickers {
+  cursor: pointer;
 }
 .red {
   color: red;

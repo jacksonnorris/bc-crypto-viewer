@@ -63,9 +63,13 @@
           </div>
         </div>
         <div class="column searchContent hidden" id="searchContent"></div>
+        <span id="toggleTickers" class="toggleTickers" onclick="toggleContent()"
+          >Show More <i class="fa-solid fa-circle-arrow-down"></i
+        ></span>
         <div class="column tickerWrapper" id="tickerWrapper"></div>
         <div class="column redditWrapper" id="redditWrapepr">
           <div>
+            <h4>Recent r/CryptoCurrency Posts</h4>
             <select id="postType" onchange="fetchRedditPosts()">
               <option value="hot">Hot</option>
               <option value="top">Top</option>
