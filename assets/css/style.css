@@ -22,6 +22,10 @@ hr {
   background-color: #fff;
   background-size: cover;
 }
+.searchContent .one-third.column {
+  margin-left: 2%;
+  margin-top: 2%;
+}
 .column {
   margin-top: 5%;
 }
@@ -32,7 +36,7 @@ hr {
   border: 1px solid black;
   border-radius: 10px;
   width: 100%;
-  padding: 5px;
+  padding: 10px;
   margin: 0;
   margin-bottom: 2%;
 }
@@ -73,4 +77,9 @@ button {
 .comments {
   padding: 0 5px;
   margin-left: 5px;
+}
+@media (min-width: 550px) {
+  /* .searchContent {
+    max-height: 250px;
+  } */
 }

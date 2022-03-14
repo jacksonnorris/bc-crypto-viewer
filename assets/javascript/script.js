@@ -63,8 +63,10 @@ function searchCrypto () {
             }
             coinName = sQuery.charAt(0).toUpperCase() + sQuery.slice(1);
             // console.log(`${sQuery} current price: $${parseData.market_data.current_price.usd} `)
+            var marketCap = formatMktCap(parseData.market_data.market_cap.usd);
+            var totalSupply = formatMktCap(parseData.market_data.circulating_supply)
             $('#searchContent').removeClass('hidden');
-            $('#searchContent').html(`<h4>${coinName}</h4><h5>Current price: $${parseData.market_data.current_price.usd.toLocaleString('en-US')}</h5><h5>24hr change: ${parseData.market_data.price_change_percentage_24h.toLocaleString('en-US')}%</h5><h5>7D change: ${parseData.market_data.price_change_percentage_7d.toLocaleString('en-US')}%</h5>`);
+            $('#searchContent').html(`<h4>${coinName}</h4><div class='one-third column'><h5>Current price: $${parseData.market_data.current_price.usd.toLocaleString('en-US')}</h5><h5>24hr change: ${parseData.market_data.price_change_percentage_24h.toLocaleString('en-US')}%</h5><h5>7D change: ${parseData.market_data.price_change_percentage_7d.toLocaleString('en-US')}%</h5></div><div class='one-third column'><h5>Market Cap: $${marketCap}</h5><h5>Market Cap Rank: ${parseData.market_data.market_cap_rank}</h5><h5>Circulating Supply: ${totalSupply.toLocaleString('en-US')}</h5></div><div class='one-third column'><h5>All Time High: $${parseData.market_data.ath.usd.toLocaleString('en-US')}</h5><h5>All Time Low: $${parseData.market_data.atl.usd.toLocaleString('en-US')}</h5><h5>ATH change: ${parseData.market_data.ath_change_percentage.usd.toLocaleString('en-US')}%</h5></div>`);
             localStorage.setItem('coin', coinName);
         }};
         xhr.send();
