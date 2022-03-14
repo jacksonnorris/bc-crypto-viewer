@@ -6,8 +6,6 @@ xhr.setRequestHeader("accept", "application/json");
 
 xhr.onreadystatechange = function () {
    if (xhr.readyState === 4) {
-      console.log(xhr.status);
-      console.log(xhr.responseText);
       formatData(xhr);
    }};
 
@@ -16,9 +14,7 @@ xhr.send();
 function formatData (data) {
     var contentArea = $('#tickerWrapper');
     contentArea.innerHTML = '';
-    // console.log(JSON.parse(data[0]).id);
     var parseData = JSON.parse(data.responseText)
-    console.log(parseData)
     parseData.forEach((value, index) => {
         if (index < 50) {
             var mktCap = formatMktCap(value.market_cap);
@@ -52,17 +48,13 @@ function searchCrypto () {
         xhr.setRequestHeader("accept", "application/json");
         xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
-            // console.log(xhr.status);
-            console.log(xhr.responseText);
             var dataArray = [];
             dataArray.push(xhr.responseText);
             var parseData = JSON.parse(dataArray)
             if (parseData.error == "Could not find coin with the given id") {
-                console.log('error found')
                 document.getElementById('searchContent').innerHTML = 'Could not find currency, please enter the name and not the ticker in your search'
             }
             coinName = sQuery.charAt(0).toUpperCase() + sQuery.slice(1);
-            // console.log(`${sQuery} current price: $${parseData.market_data.current_price.usd} `)
             var marketCap = formatMktCap(parseData.market_data.market_cap.usd);
             var totalSupply = formatMktCap(parseData.market_data.circulating_supply)
             $('#searchContent').removeClass('hidden');
@@ -78,9 +70,7 @@ function searchCrypto () {
 
 function renderPosts(posts) {
     let redditContent = $('#redditContent');
-    // console.log(redditContent.innerHTML)
     redditContent.html('');
-    // console.log(redditContent.innerHTML)
     for (var j = 0; j < posts.length; j++) {
         redditContent.append(`<div><li><a target='_blank' href='${posts[j].data.url}'>${posts[j].data.title}</a><span class='upvotes'><i class="fa-solid fa-arrow-up"></i> ${posts[j].data.ups}</span><span class='comments'><i class="fa-solid fa-comment"></i> ${posts[j].data.num_comments}</span></li></div>`)
     }
@@ -96,8 +86,7 @@ function fetchRedditPosts() {
     .then(function(result) {
         return result.json();  
     })
-    .then(function(result) {
-        console.log(result);   
+    .then(function(result) { 
         renderPosts(result.data.children);
     })
     .catch(function(err) {
